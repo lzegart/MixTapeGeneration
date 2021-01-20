@@ -16,7 +16,7 @@ const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-const routes = require("./controllers/controllers.js");
+const routes = require("./controllers/MTG-controllers.js");
 
 app.use(routes);
 
