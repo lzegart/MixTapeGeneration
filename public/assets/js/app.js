@@ -4,7 +4,7 @@ let inputEl = document.getElementById("userInput");
 document.addEventListener("DOMContentLoaded", (event) => {
   if (event) {
     $.get("/api/user_data").then(function(data) {
-      $(".member-name").text(data.email);
+      $(".member-name").text(data.username);
       //foreach item in data.playlists
         // $("#playlists").append(p)<li>data.play</li>
   

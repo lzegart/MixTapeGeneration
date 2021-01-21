@@ -45,6 +45,10 @@ module.exports = function(app) {
         let returnObject = {}
         returnObject.name = req.user.username
         //use user name to find playlists on the database
+        let userPlaylists = []
+        array.forEach(playlist => {
+          playlist.push(userPlaylists)
+        });
             //each playlist iteration:
                 //add the playlist to [] (name and id)
                     //returnObject.playlists[i].songs = []
@@ -64,10 +68,21 @@ module.exports = function(app) {
     }
 });
 
+app.delete('/api/songs/:id', (req, res) => {
+  db.Songs.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then((dbPost) => res.json(dbPost));
+});
+
+app.post('/api/playlist', (req, res) => {
+  db.Playlist.create(req.body).then((dbPost) => res.json(dbPost));
+});
   //-----------additional api --------------------------
   //add playlist
   //add song to playlist
   //delete song from playlist
-  //delete playlist
+  
 
 };
