@@ -6,7 +6,7 @@ var db = require("../models");
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username and password
 passport.use(new LocalStrategy(
     {
-    usernameField: "email"
+    usernameField: "username"
     },
     function(username, password, done) {
     // When a user tries to sign in this code runs

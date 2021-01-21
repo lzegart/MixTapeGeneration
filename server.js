@@ -1,6 +1,8 @@
 const express = require("express");
 const PORT = process.env.PORT || 5000;
 const app = express();
+const session = require("express-session");
+const passport = require("./config/passport");
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
@@ -24,6 +26,7 @@ require("./routes/api-routes.js")(app);
 
 app.use(routes);
 
+const db = require("./models")
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(`listening on: http://localhost:${PORT}`);

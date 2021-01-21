@@ -1,7 +1,7 @@
-const orm = require("./config/orm.js");
+// const orm = require("./config/orm.js");
 
-const something = {
-  // some orms stuff!
-};
+// const something = {
+//   // some orms stuff!
+// };
 
-module.exports = something;
+// module.exports = something;
