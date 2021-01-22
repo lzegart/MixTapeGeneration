@@ -2,9 +2,9 @@ const mysql = require("mysql");
 
 const connection = mysql.createConnection({
   host: "localhost",
-  port: 5000,
+  port: 3306,
   user: "root",
-  password: "",
+  password: "password",
   database: "MTG_db",
 });
 
