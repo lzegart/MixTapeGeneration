@@ -35,18 +35,15 @@ module.exports = function(app) {
     });
 
   // Route for getting some data about our user to be used client side
-    app.get("/api/user_data", function(req, res) {
+    app.get("/api/user_data:id", function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
         res.json({});
-    } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea        
-        
-
-        let returnObject = {}
-        returnObject.name = req.user.username
-        //use user name to find playlists on the database
+    } else {       
+        const returnObject = {}
+        returnObject.username = req.user.id
+        //use user id to find playlists on the database
+        db.Playlist.findAll({ where: returnObject }).then((dbPlaylist) => res.json(dbPlaylist))
         let userPlaylists = []
         array.forEach(playlist => {
           playlist.push(userPlaylists)
@@ -75,17 +72,39 @@ app.delete('/api/songs/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
-  }).then((dbPost) => res.json(dbPost));
+  }).then((dbPlaylist) => res.json(dbPlaylist));
 });
 
 app.post('/api/playlist', (req, res) => {
-  db.Playlist.create(req.body).then((dbPost) => res.json(dbPost));
+  db.Playlist.create(req.body).then((dbPlaylist) => res.json(dbPlaylist));
 });
   //-----------additional api --------------------------
   //add playlist
   //add song to playlist
   //delete song from playlist
+  
+
+  
+  const querystring = "love";
+  axios.get(`https://api.napster.com/v2.2/search/verbose?apikey=${process.env.APIKEY}&query=${querystring}&type=track&per_type_limit=10`)
+    .then(data => {
+        var response = data.data
+        // console.log(response)
+        var tracks = response.search.data.tracks
+        // console.log(tracks)
+        const trackArr = [];
+        tracks.forEach(element => {
+            // console.log({song: element.name, artist: element.artistName})
+            trackArr.push({song: element.name, artist: element.artistName})
+        });
+        console.log(trackArr)
+        res.json(trackArr)
+    })
+
+
 };
+
+
 
 const querystring = "love";
 
