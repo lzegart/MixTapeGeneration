@@ -10,15 +10,17 @@ CREATE TABLE songs(
   playlist_id INT NOT NULL,
   PRIMARY KEY (id)
 );
+
 CREATE TABLE user(
   id INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
-)
+);
+
 CREATE TABLE playlist (
   id INT NOT NULL AUTO_INCREMENT,
   playlist_name VARCHAR(255) NOT NULL,
   user_id INT NOT NULL,
   PRIMARY KEY (id)
-)
+);
