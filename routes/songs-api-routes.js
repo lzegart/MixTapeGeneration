@@ -6,6 +6,22 @@ module.exports = (app) => {
         db.Songs.create(req.body).then((dbsongs) => res.json(dbsongs));
     });
 
+    app.get('/api/songs/:id', (req, res) => {
+        db.Songs.findOne({
+            where: {
+                id: req.params.id,
+            },
+        }).then((dbsongs) => res.json(dbsongs));
+    });
+
+    app.get('/api/songs/:id', (req, res) => {
+        db.Songs.findAll({
+            where: {
+                id: req.params.id,
+            },
+        }).then((dbsongs) => res.json(dbsongs));
+    });
+
     app.delete('/api/songs/:id', (req, res) => {
         db.Songs.destroy({
             where: {
