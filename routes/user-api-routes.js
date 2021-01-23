@@ -33,19 +33,23 @@ module.exports = (app) => {
     });
 
   // Route for getting some data about our user to be used client side
-    app.get("/api/user_data:id", function(req, res) {
+    app.get("/api/user_data", function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
         res.json({});
-    } else {       
-        const returnObject = {}
-        returnObject.username = req.user.id
+    } else {  
+        res.json({
+          username: req.user.username,
+          library: req.body.library
+        })     
+        // const returnObject = {}
+        // returnObject.username = req.user.id
         //use user id to find playlists on the database
-        db.Playlist.findAll({ where: returnObject }).then((dbPlaylist) => res.json(dbPlaylist))
-        let userPlaylists = []
-        array.forEach(playlist => {
-        playlist.push(userPlaylists)
-        });
+        // db.Playlist.findAll({ where: returnObject }).then((dbPlaylist) => res.json(dbPlaylist))
+        // let userPlaylists = []
+        // array.forEach(playlist => {
+        // playlist.push(userPlaylists)
+        // });
             //each playlist iteration:
                 //add the playlist to [] (name and id)
                     //returnObject.playlists[i].songs = []
@@ -54,7 +58,7 @@ module.exports = (app) => {
                             //add each song to the playlis
                             //returnObject.playlists[i].songs.push(songs[i])
 
-        res.json(returnObject);  //return object
+        //res.json(returnObject);  //return object
 
         //name : username
         //playlists : [] {}

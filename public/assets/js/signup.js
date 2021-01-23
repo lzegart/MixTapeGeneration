@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+    console.log("hello")
     // Getting references to our form and input
     var signUpForm = $("form.signup");
     var usernameInput = $("input#username-input");
