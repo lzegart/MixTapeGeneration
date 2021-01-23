@@ -43,7 +43,7 @@ module.exports = (app) => {
             trackArr.push({song: element.name, artist: element.artistName})
         });
         console.log(trackArr)
-        // res.json(trackArr)
+        // res.json(trackArr) - <-- This code caused an error. Look at axopis read me for correct synthax
     })
 };
 //*/
