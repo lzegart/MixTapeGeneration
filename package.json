@@ -1,10 +1,10 @@
 {
   "name": "Project2",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +20,15 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^6.3.5"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucahendicott/repoThatWillBeNamed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lucahendicott/repoThatWillBeNamed/issues"
+  },
+  "homepage": "https://github.com/lucahendicott/repoThatWillBeNamed#readme",
+  "description": ""
 }
