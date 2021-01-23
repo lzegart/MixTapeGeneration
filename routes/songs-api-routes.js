@@ -16,9 +16,7 @@ module.exports = (app) => {
 
     app.get('/api/songs/:id', (req, res) => {
         db.Songs.findAll({
-            where: {
-                id: req.params.id,
-            },
+            // include: []
         }).then((dbsongs) => res.json(dbsongs));
     });
 
