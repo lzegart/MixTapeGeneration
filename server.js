@@ -20,11 +20,13 @@ const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-const routes = require("./controllers/MTG-controllers.js");
+// const routes = require("./controllers/MTG-controllers.js");
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
-
-app.use(routes);
+require("./routes/playlist-api-routes.js")(app);
+require("./routes/songs-api-routes.js")(app);
+require("./routes/user-api-routes.js")(app);
+// app.use(routes);
 
 const db = require("./models")
 db.sequelize.sync().then(() => {
