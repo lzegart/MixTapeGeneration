@@ -24,3 +24,9 @@ USE MTG_db;
 --   user_id INT NOT NULL,
 --   PRIMARY KEY (id)
 -- );
+
+INSERT INTO songs (title, artist, playlist_id)
+VALUES (Oops I did it again, Britney Spears, 0)
+
+INSERT INTO playlist (playlist_name)
+VALUES (pop it)
