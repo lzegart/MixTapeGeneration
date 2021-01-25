@@ -29,4 +29,12 @@ module.exports = (app) => {
             },
         }).then((dbPlaylist) => res.json(dbPlaylist));
     });
+
+    app.put('/api/playlist/update_name', (req, res) => {
+        db.Playlist.update(req.body, {
+            where: {
+            id: req.body.id,
+            },
+        }).then((dbPost) => res.json(dbPost));
+    });   
 }
