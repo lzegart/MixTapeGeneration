@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
                 len: [1, 20]
             } 
         }, 
+        song_list: {
+            type: Array,
+            default: [],
+        }
+
         //
         // user_id: {
         //     type: DataTypes.INTEGER,
