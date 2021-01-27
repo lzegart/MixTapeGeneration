@@ -37,4 +37,11 @@ module.exports = (app) => {
             },
         }).then((dbPost) => res.json(dbPost));
     });   
+
+    // ALEXIS CODE STARTS 
+    app.get('/*', (req, res) => {
+        res.sendFile(path.join(__dirname, './assets/index.html'));
+      });
+
+    //ALEXIS CODE ENDS 
 }
