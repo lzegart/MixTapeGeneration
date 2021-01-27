@@ -108,8 +108,8 @@ savePlaylist.addEventListener("click", function (e) {
   e.preventDefault();
   console.log("I've been hit");
   createPlaylist();
-  saveSong();
   getPlaylist();
+  saveSong()
 });
 
 const createPlaylist = () => {
