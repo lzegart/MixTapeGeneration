@@ -10,7 +10,7 @@ module.exports = function (app) {
     if (req.user) {
       res.redirect("/index");
     }
-    res.sendFile(path.join(__dirname, "../public/assets/index-test.html"));
+    res.sendFile(path.join(__dirname, "../public/assets/index.html"));
   });
 
   // app.get("/login", function (req, res) {

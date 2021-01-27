@@ -100,7 +100,7 @@ const renderPlaylist = () => {
 
   const saveBtn = document.createElement("button");
   saveBtn.textContent = `Save Playlist`;
-  saveBtn.classList.add("btn-primary", "btn");
+  saveBtn.classList.add("button primary", "btn");
   savePlaylist.appendChild(saveBtn);
 };
 
@@ -109,6 +109,7 @@ savePlaylist.addEventListener("click", function (e) {
   console.log("I've been hit");
   createPlaylist();
   saveSong();
+  getPlaylist();
 });
 
 const createPlaylist = () => {
@@ -151,4 +152,40 @@ const saveSong = () => {
       console.log("playlist created!");
     });
   });
+};
+
+const savedPlaylist = document.querySelector(".saved-playlist");
+
+// const getSongsPlaylist = () => {
+//   const playlistObj = {
+//     playlist_name: req.body.playlist_name,
+//   };
+//   fetch("/api/playlist/get_one/:id", {
+//     method: "GET",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//     },
+
+//     // make sure to serialize the JSON body
+//     body: JSON.stringify(playlistObj),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log(data);
+//     });
+// };
+
+const getPlaylist = () => {
+  fetch(`/api/playlist/get_all`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success in getting posts:", data);
+    })
+    .catch((error) => console.error("Error:", error));
 };
