@@ -100,7 +100,7 @@ const renderPlaylist = () => {
 
   const saveBtn = document.createElement("button");
   saveBtn.textContent = `Save Playlist`;
-  saveBtn.classList.add("btn-primary", "btn");
+  saveBtn.classList.add("button primary", "btn");
   savePlaylist.appendChild(saveBtn);
 };
 

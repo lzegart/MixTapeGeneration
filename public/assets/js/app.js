@@ -59,12 +59,12 @@ searchButton.addEventListener("click", function (e) {
         songButton.append(`Title: ${element.title} Artist: ${element.artist}`);
 
         songList[0].appendChild(songButton);
-        songButton.classList.add("btn-primary", "btn");
+        songButton.classList.add("btn-light", "btn");
       });
       // to add all searched songs to the playlist
       const addALL = document.createElement("button");
       addALL.textContent = `Send all to Playlist`;
-      addALL.classList.add("btn-primary", "btn");
+      addALL.classList.add("btn-light", "btn");
       sendTo.appendChild(addALL);
     });
 });
@@ -95,12 +95,12 @@ const renderPlaylist = () => {
     playlistButton.append(`Title: ${element.title} Artist: ${element.artist}`);
 
     playlistGroup[0].appendChild(playlistButton);
-    playlistButton.classList.add("btn-primary", "btn");
+    playlistButton.classList.add("btn-light", "btn");
   });
 
   const saveBtn = document.createElement("button");
   saveBtn.textContent = `Save Playlist`;
-  saveBtn.classList.add("btn-primary", "btn");
+  saveBtn.classList.add("btn-light", "btn");
   savePlaylist.appendChild(saveBtn);
 };
 
