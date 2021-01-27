@@ -177,11 +177,6 @@ const savedPlaylist = document.querySelector(".saved-playlist");
 // };
 
 const getPlaylist = () => {
-  // playlistId = playlist || "";
-  // if (playlistId) {
-  //   playlistId = `/?get_one=${playlistId}`;
-  // }
-
   fetch(`/api/playlist/get_all`, {
     method: "GET",
     headers: {
