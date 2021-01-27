@@ -8,9 +8,9 @@
   * [Technologies & Usage](#technologies-&-usage) 
   * [Installation](#installation)
   * [License](#license)
-  * [Contributing](#contributing)
   * [Tests](#tests)
-  * [Questions](#questions)
+  * [Contributions & Questions](#contributions)
+
 
   ## Description
   Mix Tape Generation is an app that allows you to search songs by track and build personalized playlists from your search results.
