@@ -105,6 +105,8 @@ h6 {
     border: 10px #021927;
     border-style: double;
     padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     border-radius: 15px 50px 30px 5px;
 }
 .holy-grail-right,
