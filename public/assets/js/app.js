@@ -44,7 +44,7 @@ let ulEl = document.createElement("ul");
 console.log(ulEl);
 for  (let i=0; i < data.length; i++) {
 let liEl = document.createElement("li");
-liEl.textContent = `song: ${data[i].song}  artist: ${data[i].artist}`
+liEl.textContent = `title: ${data[i].song}  artist: ${data[i].artist} `
 ulEl.append(liEl)
 } console.log(ulEl);
 resultsbar.append(ulEl)
