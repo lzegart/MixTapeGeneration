@@ -20,13 +20,13 @@ module.exports = (sequelize, DataTypes) => {
         // },
     });
 
-    Playlist.associate = (models) => {
-        // Associating Author with Posts
-        // When an Author is deleted, also delete any associated Posts
-        Playlist.hasMany(models.Songs, {
-            onDelete: 'cascade',
-        });
-    };
+  Playlist.associate = (models) => {
+    // Associating Author with Posts
+    // When an Author is deleted, also delete any associated Posts
+    Playlist.hasMany(models.Songs, {
+      onDelete: "cascade",
+    });
+  };
 
-    return Playlist;
+  return Playlist;
 };
