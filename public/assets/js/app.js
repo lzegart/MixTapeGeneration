@@ -35,6 +35,24 @@ document.addEventListener("DOMContentLoaded", function () {
 //create song
 //return song
 
+// ALEXIS CODE STARTS
+let resultsbar = document.getElementById("resultsbar")
+let savedplaylist = document.getElementById("savedplaylist")
+
+const renderResults = (data) => {
+let ulEl = document.createElement("ul");
+console.log(ulEl);
+for  (let i=0; i < data.length; i++) {
+let liEl = document.createElement("li");
+liEl.textContent = `song: ${data[i].song}  artist: ${data[i].artist}`
+ulEl.append(liEl)
+} console.log(ulEl);
+resultsbar.append(ulEl)
+};
+
+// ALEXIS CODE ENDS
+
+
 searchButton.addEventListener("click", function (e) {
   e.preventDefault();
   let songTitle = songInput.value;
@@ -46,7 +64,11 @@ searchButton.addEventListener("click", function (e) {
     })
     .then(function (data) {
       console.log(data);
+
+      // ALEXIS ADDED LINE 68
+     renderResults(data)
     });
 });
 
-const renderResults = () => {};
+
+

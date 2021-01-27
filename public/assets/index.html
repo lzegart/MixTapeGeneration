@@ -1,75 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Warnes&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/assets/css/styles.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Warnes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <!-- <link rel="stylesheet" href="./css/styles.css"> -->
     <title>MixtTapeGeneration - AlphaFlightTeam</title>
-  </head>
-  <body>
+</head>
+<body>
+
+    
     <article class="holy-grail-grid">
-      <!-- Header -->
-      <header class="wrap holy-grail-header">
-        <h1>MixtTapeGeneration</h1>
-        <img class="img04" src="/assets/musicbanner02.png" /><br />
-        <h6>Brought to you by the AlphaFlightTeam</h6>
-      </header>
-      <!-- Playlist Options -->
-      <nav class="holy-grail-left">
-        <h3>
-          <img class="img01" src="/assets/musicnote.png" /> Select a playlist
-        </h3>
-        <select class="custom-select" id="category">
-          <option selected value="">Playlist 01</option>
-          <option value="Personal">Playlist 02</option>
-          <option value="Political">Playlist 03</option>
-        </select>
+      
+       <header class="wrap holy-grail-header">
+                
+                </header>
 
-        <br /><br /><br />
-        <hr />
-        <h3>
-          <img class="img01" src="/assets/musicnote.png" /> Create a new
-          playlist
-        </h3>
-        <label for="title">Input Playlist Name:</label>
-        <input type="text" class="form-control" id="playlist-name" />
-        <br />
-        <form id="search-track-form">
-          <label for="body">Search Song Name:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="song-search"
-            placeholder="Search"
-          />
-          <button type="submit">Search</button>
-        </form>
-        <label for="title">Search Results:</label>
-        <div class="">
-          <button type="submit"></button>
-        </div>
-      </nav>
-      <!-- Description -->
-      <main class="holy-grail-middle">
-        <h3>
-          <img class="img01" src="/assets/musicnote.png" /> Display Playlist
-        </h3>
-        <br />
-      </main>
+                <nav class="holy-grail-left">
+                  <h1><img src="./assets/images/img01.JPG"><br>Mix Tape Generation </h1><br>
+                 <h2>Brought to you by AlphaFlightTeam</h2>
+                 <i>Lucas, Alexis, Lara, Francisco</i>
+                </nav>
 
-      <!-- Footer -->
-      <footer class="holy-grail-footer"></footer>
-    </article>
-  </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="/assets/js/app.js"></script>
+            <main class="holy-grail-middle">
+
+
+
+             <div class="row">
+              <div class="large-6 columns">
+                <h3><img class="img01" src="./assets/images/musicnote.png"> Create a Playlist</h3>
+                <label for="title"> Create a name for your playlist </label>
+                <input type="text" class="form-control" id="title">
+              <br>
+                <label for="song-search"> Enter song name to search </label>
+                <input type="text" class="form-control" id="song-search">
+                <button type="submit" id="search-button" class="button primary"> Search</button> <br><br></div>
+
+              <div class="large-6 columns" id="savedplaylist">
+                <h3><img class="img01" src="./assets/images/musicnote.png"> Saved Playlist</h3></div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns"><br></div>
+              <div class="large-12 columns"><br></div>
+              <div class="large-6 columns" id="resultsbar">
+              <h3><img class="img01" src="./assets/images/musicnote.png"> Search Results</h3>
+
+            </div>
+            
+
+            <div class="large-6 columns">
+              <img src="./assets/images/img02.JPG">
+            </div>
+
+              </div>
+
+
+        </main>
+        
+     
+      
+        
+        <!-- Footer -->
+        <footer class="holy-grail-footer">
+        </footer> 
+          
+        </article>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="./assets/js/app.js"></script>
 </html>
