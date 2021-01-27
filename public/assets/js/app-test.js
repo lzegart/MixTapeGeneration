@@ -56,7 +56,7 @@ searchButton.addEventListener("click", function (e) {
       data.forEach((element) => {
         // to show all song results as button so we can have the user pick  single song to the playlist
         const songButton = document.createElement("button");
-        songButton.append(`Title: ${element.song} Artist: ${element.artist}`);
+        songButton.append(`Title: ${element.title} Artist: ${element.artist}`);
 
         songList[0].appendChild(songButton);
         songButton.classList.add("btn-primary", "btn");
@@ -92,7 +92,7 @@ const renderPlaylist = () => {
   playlistArray.forEach((element) => {
     // to show all song results as button so we can have the user pick  single song to the playlist
     const playlistButton = document.createElement("button");
-    playlistButton.append(`Title: ${element.song} Artist: ${element.artist}`);
+    playlistButton.append(`Title: ${element.title} Artist: ${element.artist}`);
 
     playlistGroup[0].appendChild(playlistButton);
     playlistButton.classList.add("btn-primary", "btn");
@@ -138,7 +138,7 @@ const saveSong = () => {
       artist: element.artist,
     };
 
-    fetch("/api/song/create", {
+    fetch("api/songs/create", {
       method: "POST",
       headers: {
         Accept: "application/json",
