@@ -182,5 +182,4 @@ const getSongs = (playlist) => {
       //start appending
       console.log(data);
     });
-}
 };
