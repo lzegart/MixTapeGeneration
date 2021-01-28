@@ -20,6 +20,7 @@ if (window.location.pathname === "/") {
   songInput = document.getElementById("song-search");
   playlistInput = document.getElementById("playlist-name");
   searchButton = document.getElementById("search-button");
+  createButton = document.getElementById("create-button");
   addToPlaylist = document.getElementById("add-song");
   removeFromPlaylist = document.getElementById("remove-song");
   sendTo = document.querySelector(".to-playlist");
@@ -190,5 +191,28 @@ const getPlaylist = () => {
     .catch((error) => console.error("Error:", error));
 };
 
+// optional helper funtion to clear/ refresh elements when changes are made
+const getSongs = (playlist) => {
+  //option one, (replace rendersongtoplaylist functionality)
+  const playlistObj = {
+    playlist_name: req.body.playlist_name,
+  };
+  fetch(`/api/playlist/get_one/${playlist.id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
 
-
+    // make sure to serialize the JSON body
+    body: JSON.stringify(playlistObj),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      //active_playlist = playlist (if you wnat)
+      //add title to playlist
+      //element.innerHTML = ''
+      //start appending
+      console.log(data);
+    });
+};
