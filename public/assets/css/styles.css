@@ -1,5 +1,5 @@
 body {
-  background-color: white;
+  background-color: burlywood;
   color: black;
   text-align: center;
 }
@@ -7,7 +7,7 @@ ul {
   list-style: none;
 }
 a {
-color: rgb(0, 174, 255);
+color: rgb(255, 166, 0);
     text-shadow: 2px 2px 4px black;
     font-weight: bold;
     align-content: center;
@@ -16,7 +16,7 @@ a:hover {
 color:  lightgoldenrodyellow;
 }
 a:active {
-color:lightgray);
+color:rgb(87, 10, 10));
 }
 
 hr {
@@ -50,16 +50,11 @@ li {
   height: 60px;
 }
 .img02 {
-  width: 120px;
-  height: 150px;
+  width: 400px;
+  height: 300px;
   align-content: left;
-  padding-bottom: 25px;
-  padding-top: 15px;
-}
-.img04 {
-height:120px;
-width: 140px;
-padding-bottom: 10px;
+  padding-top: 50px;
+  padding-bottom: 10px;
 }
 h1 {
   margin-top: 0px;
@@ -69,42 +64,44 @@ h1 {
   font-size: 5rem;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
-  color: #0879e2;
-  text-shadow: 2px 2px 2px rgb(38, 4, 70);
+  color: #A52A2A;
+  text-shadow: 2px 4px 2px black;
           
              
     }
 
 h2 {
-  color:#07b7fd;
+  color:#A52A2A;
   font-size: 25px;
-  text-shadow: 2px 2px 2px rgb(38, 4, 70);
+  text-shadow: 2px 2px 2px black;
   text-align: center;
   font-family: cursive;
 }
 h3 {
-  color:#07b7fd;
-  text-shadow: 2px 2px 2px rgb(46, 2, 104);
+  color:burlywood;
+  text-shadow: 2px 2px 2px black;
   text-align: center;
   text-align: left;
 }
 h6 {
   align-content: left;
-  color:#108cf1;
+  color:burlywood;
   text-align: left;
   font-weight: bolder;
 }
 
 .holy-grail-left {
-  background-color:white; 
+  background-color:burlywood; 
   padding-top: 10px;
   padding-left: 100px;
 }
 .holy-grail-middle {
-    background-color:white;
+    background-color:#A52A2A;
     border: 10px #021927;
     border-style: double;
     padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 30px;
     border-radius: 15px 50px 30px 5px;
 }
 .holy-grail-right,
@@ -154,6 +151,7 @@ h6 {
   -ms-grid-column: 1;
       grid-column-start: 1;
   grid-column-end: 4;
+  background-color: burlywood;
 }
 .form-control {
   width: 500px;
@@ -163,30 +161,15 @@ h6 {
 .mncontent {
   text-align: left;
 }
-.table-refresh {
-  min-width: 400px;
-  max-width: 450px;
-  font-size: 14px;
-  font-family: 'Quicksand' , sans-serif;
+.list-group {
+  width: 500px;
+  align-items: left;
 }
-.table-refresh__table {
-  border-collapse: collapse;
-  width: 100%;
-  box-shadow: black;
-  border-bottom: 2px solid lightslategray;
+.playlist-group{
+  width: 500px;
+  align-content: left;
+  padding-right: 10px;
 }
-.table-refresh__table thead tr {
-  background-color: lightsteelblue;
-  color: black;
-}
-.table-refresh__table th,
-.table-refresh__table td {
-  text-align: left;
-  padding: 9px 18px;
-}
-.table-refresh__table tbody tr:nth-last-of-type(even) {
-  background: rgb(238, 235, 235);
-}
-.table-refresh__options > *:not(:last-child) {
-margin-right: 12px;
+.side {
+  align-content: left;
 }
