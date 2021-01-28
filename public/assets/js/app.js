@@ -18,7 +18,10 @@ if (window.location.pathname === "/") {
   list = document.querySelector(".list-group");
   songList = document.querySelectorAll("#list-container .list-group");
   playlistGroup = document.querySelectorAll(".playlist-group");
-  saveMe = document.getElementById("save-me");
+  showPlaylist = document.getElementById("show-me");
+  showPlaylistName = document.getElementById("playlist-name");
+  showSavedSongs = document.getElementById("saved-song-list");
+  showPlaylistGroup = document.getElementById("playlist-group");
   console.log("This is true");
 }
 document.addEventListener("DOMContentLoaded", function () {
@@ -104,11 +107,30 @@ const createPlaylist = () => {
     .catch((error) => console.error("Error:", error));
 };
 
-//saveMe saves the playlist to the backend//
-saveMe.addEventListener("click", function (e) {
+//showMe saves the playlist to the backend//
+let playlistData = [];
+showPlaylist.addEventListener("click", function (e) {
   e.preventDefault();
+  playlistData = [];
   console.log("ive been clicked");
+  fetch(`/api/playlist/get_all`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success in getting posts:", data);
+      // data contains array of playlist name and it includes the songs within the playlist
+      // this gets triggered once you click the cassette tape
+      playlistData = data;
+      console.log(playlistData);
+      playlistData.forEach((element) => {});
+    })
+    .catch((error) => console.error("Error:", error));
 });
+// /api/playlist/get_all
 
 //============Save song Section =================//
 const saveSong = (data) => {
