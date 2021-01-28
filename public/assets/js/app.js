@@ -4,17 +4,7 @@ let removeFromPlaylist;
 let songList;
 let sendTo;
 let playlistGroup;
-
-//   // UPDATE HERE
-//   searchTrax.addEventListener("click", (event) => {
-//     event.preventDefault();
-//     fetch(``, {
-//       // something
-//     }).then((response) => {
-//       console.log(response);
-//     });
-//   });
-// });
+let active_playlist;
 
 if (window.location.pathname === "/") {
   songInput = document.getElementById("song-search");
@@ -34,13 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Handler when the DOM is fully loaded
 });
 
-//create a function for each api route (songs, playlists)
-
-//create playlist
-//return playlist
-
-//create song
-//return song
 // temp song holder if the user wanted to push all songs to the playlist
 let searchArray = [];
 searchButton.addEventListener("click", function (e) {
@@ -57,61 +40,53 @@ searchButton.addEventListener("click", function (e) {
       data.forEach((element) => {
         // to show all song results as button so we can have the user pick  single song to the playlist
         const songButton = document.createElement("button");
+
         songButton.append(`Title: ${element.title} Artist: ${element.artist}`);
+        songButton.data = element;
 
         songList[0].appendChild(songButton);
         songButton.classList.add("btn-light", "btn");
+        songButton.addEventListener('click', (e) => {
+          e.preventDefault()
+          saveSong(songButton.data)
+        })
+        
       });
-      // to add all searched songs to the playlist
-      const addALL = document.createElement("button");
-      addALL.textContent = `Send all to Playlist`;
-      addALL.classList.add("btn-light", "btn");
-      sendTo.appendChild(addALL);
     });
 });
+
+createButton.addEventListener("click", function(e){
+  console.log('create button pressed')
+  e.preventDefault()
+  createPlaylist()
+})
 
 let playlistArray = [];
 
-sendTo.addEventListener("click", function (e) {
-  console.log("I've been hit");
+const setAcvitePlaylist = (playlist) => {
+  //playlist is created -or-
+  //plalist selected by user
+  active_playlist = playlist
+  //additional functionality
+    //set playlist name
+    //populate the playlist-group with this playlist's songs (after removing others)
+}
 
-  const toPlaylist = async () => {
-    await searchArray.forEach((element) => {
-      playlistArray.push(element);
-    });
-    searchArray = [];
-    console.log(playlistArray);
-    console.log(searchArray);
-  };
-  toPlaylist();
-  renderPlaylist();
-  // need to clean the results section to empty again
-  // clears the temp array ready for searching again
-});
-
-const renderPlaylist = () => {
-  playlistArray.forEach((element) => {
+const renderSongToPlaylist = (songData) => {
     // to show all song results as button so we can have the user pick  single song to the playlist
-    const playlistButton = document.createElement("button");
-    playlistButton.append(`Title: ${element.title} Artist: ${element.artist}`);
+    
+    const songButton = document.createElement("button");
+    songButton.data = songData
+    songButton.append(`Title: ${songData.title} Artist: ${songData.artist}`);
+    playlistGroup[0].appendChild(songButton);
+    songButton.classList.add("btn-light", "btn");
 
-    playlistGroup[0].appendChild(playlistButton);
-    playlistButton.classList.add("btn-light", "btn");
-  });
-
-  const saveBtn = document.createElement("button");
-  saveBtn.textContent = `Save Playlist`;
-  saveBtn.classList.add("btn-light", "btn");
-  savePlaylist.appendChild(saveBtn);
+    songButton.addEventListener("click", function(e) {
+      e.preventDefault()
+      deleteSongFromPlaylist(songData, songButton)
+    })
+  
 };
-
-savePlaylist.addEventListener("click", function (e) {
-  e.preventDefault();
-  console.log("I've been hit");
-  createPlaylist();
-  saveSong();
-  getPlaylist();
-});
 
 const createPlaylist = () => {
   let playlistName = playlistInput.value;
@@ -127,57 +102,78 @@ const createPlaylist = () => {
 
     // make sure to serialize the JSON body
     body: JSON.stringify(newPlaylist),
-  }).then(() => {
-    console.log("playlist created!");
-  });
+  }).then((response) => response.json())
+    .then((data) => {
+
+    console.log("Playlist created:", data);
+
+    setAcvitePlaylist(data);
+  })
+  .catch((error) => console.error("Error:", error));
 };
 
-const saveSong = () => {
-  playlistArray.forEach((element) => {
-    console.log(element);
-    const currentSong = {
-      title: element.title,
-      artist: element.artist,
-    };
+const saveSong = (data) => {
+  //see if window.active_playlist exists
+  if(!active_playlist) return;
 
-    fetch("api/songs/create", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+  data.PlaylistId = active_playlist.id;
 
-      // make sure to serialize the JSON body
-      body: JSON.stringify(currentSong),
-    }).then(() => {
-      console.log("playlist created!");
-    });
-  });
+  fetch("api/songs/create", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+
+    // make sure to serialize the JSON body
+    body: JSON.stringify(data),
+  }).then((response) => response.json())
+  .then((data) => {
+
+  console.log("Song created:", data);
+
+  renderSongToPlaylist(data);
+})
+.catch((error) => console.error("Error:", error));
+
 };
 
 const savedPlaylist = document.querySelector(".saved-playlist");
 
-// const getSongsPlaylist = () => {
-//   const playlistObj = {
-//     playlist_name: req.body.playlist_name,
-//   };
-//   fetch("/api/playlist/get_one/:id", {
-//     method: "GET",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
+const getOnePlaylist = () => {
+  const playlistObj = {
+    playlist_name: req.body.playlist_name,
+  };
+  fetch("/api/playlist/get_one/:id", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
 
-//     // make sure to serialize the JSON body
-//     body: JSON.stringify(playlistObj),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log(data);
-//     });
-// };
+    // make sure to serialize the JSON body
+    body: JSON.stringify(playlistObj),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+};
 
-const getPlaylist = () => {
+//starter function to delete a song from a playlist
+const deleteSongFromPlaylist = (data, songButton) => {
+  fetch(`/api/songs/delete/${data.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(()=>{
+    songButton.parentNode.removeChild(songButton)
+    console.log("song deleted")
+  })
+}
+
+const getAllPlaylist = () => {
   fetch(`/api/playlist/get_all`, {
     method: "GET",
     headers: {
@@ -192,8 +188,7 @@ const getPlaylist = () => {
 };
 
 // optional helper funtion to clear/ refresh elements when changes are made
-const getSongs = (playlist) => {
-  //option one, (replace rendersongtoplaylist functionality)
+const getSongs = (playlist) => { //option one, (replace rendersongtoplaylist functionality)
   const playlistObj = {
     playlist_name: req.body.playlist_name,
   };
@@ -212,7 +207,7 @@ const getSongs = (playlist) => {
       //active_playlist = playlist (if you wnat)
       //add title to playlist
       //element.innerHTML = ''
-      //start appending
+      //start appending 
       console.log(data);
     });
-};
+}
