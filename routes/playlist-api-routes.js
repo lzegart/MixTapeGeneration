@@ -31,17 +31,16 @@ module.exports = (app) => {
     });
 
     app.put('/api/playlist/update_name', (req, res) => {
-        db.Playlist.update(req.body, {
+        db.Playlist.update({
+            playlist_name : req.body.playlist_name
+        }, {
             where: {
-            id: req.body.id,
+                id: req.body.id,
             },
-        }).then((dbPost) => res.json(dbPost));
-    });   
+        }).then((dbPlaylist) => {
+            //console.log(dbPlaylist[0])
+            res.json(dbPlaylist)
+        });
 
-    // ALEXIS CODE STARTS 
-    app.get('/*', (req, res) => {
-        res.sendFile(path.join(__dirname, './assets/index.html'));
-      });
-
-    //ALEXIS CODE ENDS 
+    }); 
 }
