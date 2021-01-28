@@ -31,11 +31,11 @@ li {
 .holy-grail-grid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 3fr 1fr;
-      grid-template-columns: 1fr 3fr 1fr;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
   -ms-grid-rows: 1fr 8fr 1fr;
       grid-template-rows: 1fr 8fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 40px;
   height: 100vh;
 }
 
@@ -50,8 +50,8 @@ li {
   height: 60px;
 }
 .img02 {
-  width: 200px;
-  height: 150px;
+  width: 60px;
+  height: 40px;
   align-content: left;
   padding-top: 50px;
   padding-bottom: 10px;
@@ -93,7 +93,8 @@ h6 {
 .holy-grail-left {
   background-color:rgb(247, 165, 59); 
   padding-top: 10px;
-  padding-left: 100px;
+  padding-left: 50px;
+  padding-right: 25px;
 }
 .holy-grail-middle {
     background-color:#73bedf;
@@ -101,15 +102,15 @@ h6 {
     border-style: double;
     padding-top: 10px;
     padding-left: 20px;
-    padding-right: 10px;
-    border-radius: 15px 50px 30px 5px;
+    /* padding-right: 30px; */
+    /* border-radius: 15px 50px 30px 5px; */
 }
-.holy-grail-right,
+/* .holy-grail-right,
 .holy-grail-footer {
   padding: 1rem;
   border: none;
   background-color: white;
-}
+} */
 
 .holy-grail-header {
   -ms-grid-column: 1;
