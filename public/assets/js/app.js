@@ -6,17 +6,6 @@ let sendTo;
 let playlistGroup;
 let active_playlist;
 
-//   // UPDATE HERE
-//   searchTrax.addEventListener("click", (event) => {
-//     event.preventDefault();
-//     fetch(``, {
-//       // something
-//     }).then((response) => {
-//       console.log(response);
-//     });
-//   });
-// });
-
 if (window.location.pathname === "/") {
   songInput = document.getElementById("song-search");
   playlistInput = document.getElementById("playlist-name");
@@ -35,13 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Handler when the DOM is fully loaded
 });
 
-//create a function for each api route (songs, playlists)
-
-//create playlist
-//return playlist
-
-//create song
-//return song
 // temp song holder if the user wanted to push all songs to the playlist
 let searchArray = [];
 searchButton.addEventListener("click", function (e) {
@@ -92,11 +74,17 @@ const setAcvitePlaylist = (playlist) => {
 
 const renderSongToPlaylist = (songData) => {
     // to show all song results as button so we can have the user pick  single song to the playlist
+    
     const songButton = document.createElement("button");
+    songButton.data = songData
     songButton.append(`Title: ${songData.title} Artist: ${songData.artist}`);
-
     playlistGroup[0].appendChild(songButton);
     songButton.classList.add("btn-light", "btn");
+
+    songButton.addEventListener("click", function(e) {
+      e.preventDefault()
+      deleteSongFromPlaylist(songData, songButton)
+    })
   
 };
 
@@ -172,6 +160,18 @@ const getOnePlaylist = () => {
     });
 };
 
+//starter function to delete a song from a playlist
+const deleteSongFromPlaylist = (data, button) => {
+  fetch(`/api/songs/delete/${data.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(()=>{
+    //delete the btton here
+  })
+}
+
 const getAllPlaylist = () => {
   fetch(`/api/playlist/get_all`, {
     method: "GET",
@@ -185,3 +185,28 @@ const getAllPlaylist = () => {
     })
     .catch((error) => console.error("Error:", error));
 };
+
+// optional helper funtion to clear/ refresh elements when changes are made
+const getSongs = (playlist) => { //option one, (replace rendersongtoplaylist functionality)
+  const playlistObj = {
+    playlist_name: req.body.playlist_name,
+  };
+  fetch(`/api/playlist/get_one/${playlist.id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+
+    // make sure to serialize the JSON body
+    body: JSON.stringify(playlistObj),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      //active_playlist = playlist (if you wnat)
+      //add title to playlist
+      //element.innerHTML = ''
+      //start appending 
+      console.log(data);
+    });
+}
