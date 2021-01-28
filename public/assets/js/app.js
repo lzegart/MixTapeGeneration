@@ -5,6 +5,7 @@ let songList;
 let sendTo;
 let playlistGroup;
 let active_playlist;
+
 if (window.location.pathname === "/") {
   songInput = document.getElementById("song-search");
   playlistInput = document.getElementById("playlist-name");
@@ -14,8 +15,13 @@ if (window.location.pathname === "/") {
   removeFromPlaylist = document.getElementById("remove-song");
   sendTo = document.querySelector(".to-playlist");
   savePlaylist = document.querySelector(".save-playlist");
+  list = document.querySelector(".list-group");
   songList = document.querySelectorAll("#list-container .list-group");
   playlistGroup = document.querySelectorAll(".playlist-group");
+  showPlaylist = document.getElementById("show-me");
+  showPlaylistName = document.getElementById("playlist-name");
+  showSavedSongs = document.getElementById("saved-song-list");
+  showPlaylistGroup = document.getElementById("playlist-group");
   console.log("This is true");
 }
 document.addEventListener("DOMContentLoaded", function () {
@@ -25,7 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
 let searchArray = [];
 searchButton.addEventListener("click", function (e) {
   e.preventDefault();
+  clear();
   let songTitle = songInput.value;
+
   console.log(songTitle);
   fetch(`/api/search/${songTitle}`)
     .then(function (response) {
@@ -48,11 +56,14 @@ searchButton.addEventListener("click", function (e) {
       });
     });
 });
+
+// ======== Create Button Section =================//
 createButton.addEventListener("click", function (e) {
   console.log("create button pressed");
   e.preventDefault();
   createPlaylist();
 });
+
 let playlistArray = [];
 const setAcvitePlaylist = (playlist) => {
   //playlist is created -or-
@@ -95,6 +106,33 @@ const createPlaylist = () => {
     })
     .catch((error) => console.error("Error:", error));
 };
+
+//showMe saves the playlist to the backend//
+let playlistData = [];
+showPlaylist.addEventListener("click", function (e) {
+  e.preventDefault();
+  playlistData = [];
+  console.log("ive been clicked");
+  fetch(`/api/playlist/get_all`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success in getting posts:", data);
+      // data contains array of playlist name and it includes the songs within the playlist
+      // this gets triggered once you click the cassette tape
+      playlistData = data;
+      console.log(playlistData);
+      playlistData.forEach((element) => {});
+    })
+    .catch((error) => console.error("Error:", error));
+});
+// /api/playlist/get_all
+
+//============Save song Section =================//
 const saveSong = (data) => {
   //see if window.active_playlist exists
   if (!active_playlist) return;
@@ -182,5 +220,16 @@ const getSongs = (playlist) => {
       //start appending
       console.log(data);
     });
-}
+};
+
+// this function clears the array and the html body
+const clear = () => {
+  console.log("clear being read");
+  if (searchArray === null && list === null) {
+    console.log("nothing in here");
+  } else {
+    searchArray = [];
+    document.querySelector(".list-group").innerHTML = "";
+    console.log("emptied");
+  }
 };
