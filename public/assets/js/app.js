@@ -161,14 +161,15 @@ const getOnePlaylist = () => {
 };
 
 //starter function to delete a song from a playlist
-const deleteSongFromPlaylist = (data, button) => {
+const deleteSongFromPlaylist = (data, songButton) => {
   fetch(`/api/songs/delete/${data.id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
   }).then(()=>{
-    //delete the btton here
+    songButton.parentNode.removeChild(songButton)
+    console.log("song deleted")
   })
 }
 
