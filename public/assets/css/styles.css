@@ -1,5 +1,5 @@
 body {
-  background-color: burlywood;
+  background-color: rgb(247, 165, 59);
   color: black;
   text-align: center;
 }
@@ -16,7 +16,7 @@ a:hover {
 color:  lightgoldenrodyellow;
 }
 a:active {
-color:rgb(87, 10, 10));
+color:rgb(87, 10, 10);
 }
 
 hr {
@@ -60,48 +60,48 @@ h1 {
   margin-top: 0px;
   margin-bottom: 3px;
   text-align: center;
-  font-family: fantasy;
-  font-size: 5rem;
+  font-family: 'Kirang Haerang', cursive;
+  font-size: 6rem;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
-  color: #A52A2A;
-  text-shadow: 2px 4px 2px black;
+  color: #d46784;
+  text-shadow: 5px 6px 5px black;
           
              
     }
 
 h2 {
-  color:#A52A2A;
-  font-size: 25px;
+  color:#d46784;
+  font-size: 30px;
   text-shadow: 2px 2px 2px black;
   text-align: center;
-  font-family: cursive;
+  font-family: 'Kirang Haerang', cursive;
 }
 h3 {
-  color:burlywood;
-  text-shadow: 2px 2px 2px black;
+  color:rgb(241, 213, 100);
+  text-shadow: 3px 3px 3px black;
   text-align: center;
   text-align: left;
 }
 h6 {
   align-content: left;
-  color:burlywood;
+  color:rgb(247, 165, 59);
   text-align: left;
   font-weight: bolder;
 }
 
 .holy-grail-left {
-  background-color:burlywood; 
+  background-color:rgb(247, 165, 59); 
   padding-top: 10px;
   padding-left: 100px;
 }
 .holy-grail-middle {
-    background-color:#A52A2A;
+    background-color:#73bedf;
     border: 10px #021927;
     border-style: double;
     padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 10px;
     border-radius: 15px 50px 30px 5px;
 }
 .holy-grail-right,
@@ -151,7 +151,7 @@ h6 {
   -ms-grid-column: 1;
       grid-column-start: 1;
   grid-column-end: 4;
-  background-color: burlywood;
+  background-color: rgb(247, 165, 59);
 }
 .form-control {
   width: 500px;
