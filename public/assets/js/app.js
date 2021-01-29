@@ -6,6 +6,7 @@ let sendTo;
 let playlistGroup;
 let active_playlist;
 let showPlaylistName;
+let showSavedSongs;
 
 if (window.location.pathname === "/") {
   songInput = document.getElementById("song-search");
@@ -21,7 +22,7 @@ if (window.location.pathname === "/") {
   playlistGroup = document.querySelectorAll(".playlist-group");
   showPlaylist = document.getElementById("show-me");
   showPlaylistName = document.querySelector(".playlist-name");
-  showSavedSongs = document.getElementById("saved-song-list");
+  showSavedSongs = document.querySelector(".saved-song-list");
   showPlaylistGroup = document.getElementById("playlist-group");
   console.log("This is true");
 }
@@ -60,6 +61,7 @@ createButton.addEventListener("click", function (e) {
   console.log("create button pressed");
   e.preventDefault();
   createPlaylist();
+  alert("playlist successfully created! Search songs to add.")
 });
 
 let playlistArray = [];
@@ -131,10 +133,38 @@ showPlaylist.addEventListener("click", function (e) {
         savedPlaylist.classList.add("btn-light", "btn")
         savedPlaylist.textContent = element.playlist_name
         showPlaylistName.appendChild(savedPlaylist)
+        savedPlaylist.addEventListener("click", function(e) {
+          e.preventDefault()
+          console.log("clickies")
+          
+          fetch('/api/songs/get_all', {
+            method: "GET",  
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("get one playlist:", data)
+            data.forEach((song) => {
+              displayPlaylistSongs = document.createElement("button")
+              displayPlaylistSongs.textContent = `Title: ${song.title} Artist: ${song.artist}`
+              showSavedSongs.appendChild(displayPlaylistSongs)
+              displayPlaylistSongs.addEventListener("click", function(e) {
+                e.preventDefault()
+                console.log("clicked song")
+                deleteSongFromPlaylist(song)
+              })
+            })
+            
+          })
+        })
       });
     })
     .catch((error) => console.error("Error:", error));
 });
+
+
 
 //trying to update a playlist name when clicking a playlist
 // savedPlaylistBtn.addEventListener("click", function(e) {
@@ -152,6 +182,8 @@ showPlaylist.addEventListener("click", function (e) {
 //     console.log("get one playlist:", data)
 //   })
 // })
+
+
 
 
 //============Save song Section =================//
@@ -197,7 +229,7 @@ const getOnePlaylist = () => {
 };
 
 //starter function to delete a song from a playlist
-const deleteSongFromPlaylist = (data, songButton) => {
+const deleteSongFromPlaylist = (data, songButton, displayPlaylistSongs) => {
   fetch(`/api/songs/delete/${data.id}`, {
     method: "DELETE",
     headers: {
@@ -205,6 +237,7 @@ const deleteSongFromPlaylist = (data, songButton) => {
     },
   }).then(() => {
     songButton.parentNode.removeChild(songButton);
+    displayPlaylistSongs.parentNode.removeChild(displayPlaylistSongs);
     console.log("song deleted");
   });
 };

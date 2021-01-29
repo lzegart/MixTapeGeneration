@@ -10,11 +10,6 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// const exphbs = require("express-handlebars");
-
-// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-// app.set("view engine", "handlebars");
-
 require("./routes/html-routes.js")(app);
 require("./routes/search-api-routes.js")(app);
 require("./routes/playlist-api-routes.js")(app);
