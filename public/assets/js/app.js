@@ -61,6 +61,7 @@ createButton.addEventListener("click", function (e) {
   console.log("create button pressed");
   e.preventDefault();
   createPlaylist();
+  alert("playlist successfully created! Search songs to add.")
 });
 
 let playlistArray = [];
@@ -146,16 +147,24 @@ showPlaylist.addEventListener("click", function (e) {
           .then((data) => {
             console.log("get one playlist:", data)
             data.forEach((song) => {
-              displayPlaylistSongs = document.createElement("ol")
+              displayPlaylistSongs = document.createElement("button")
               displayPlaylistSongs.textContent = `Title: ${song.title} Artist: ${song.artist}`
               showSavedSongs.appendChild(displayPlaylistSongs)
+              displayPlaylistSongs.addEventListener("click", function(e) {
+                e.preventDefault()
+                console.log("clicked song")
+                deleteSongFromPlaylist(song)
+              })
             })
+            
           })
         })
       });
     })
     .catch((error) => console.error("Error:", error));
 });
+
+
 
 //trying to update a playlist name when clicking a playlist
 // savedPlaylistBtn.addEventListener("click", function(e) {
@@ -220,7 +229,7 @@ const getOnePlaylist = () => {
 };
 
 //starter function to delete a song from a playlist
-const deleteSongFromPlaylist = (data, songButton) => {
+const deleteSongFromPlaylist = (data, songButton, displayPlaylistSongs) => {
   fetch(`/api/songs/delete/${data.id}`, {
     method: "DELETE",
     headers: {
@@ -228,6 +237,7 @@ const deleteSongFromPlaylist = (data, songButton) => {
     },
   }).then(() => {
     songButton.parentNode.removeChild(songButton);
+    displayPlaylistSongs.parentNode.removeChild(displayPlaylistSongs);
     console.log("song deleted");
   });
 };
