@@ -6,6 +6,7 @@ let sendTo;
 let playlistGroup;
 let active_playlist;
 let showPlaylistName;
+let showSavedSongs;
 
 if (window.location.pathname === "/") {
   songInput = document.getElementById("song-search");
@@ -21,7 +22,7 @@ if (window.location.pathname === "/") {
   playlistGroup = document.querySelectorAll(".playlist-group");
   showPlaylist = document.getElementById("show-me");
   showPlaylistName = document.querySelector(".playlist-name");
-  showSavedSongs = document.getElementById("saved-song-list");
+  showSavedSongs = document.querySelector(".saved-song-list");
   showPlaylistGroup = document.getElementById("playlist-group");
   console.log("This is true");
 }
@@ -131,6 +132,26 @@ showPlaylist.addEventListener("click", function (e) {
         savedPlaylist.classList.add("btn-light", "btn")
         savedPlaylist.textContent = element.playlist_name
         showPlaylistName.appendChild(savedPlaylist)
+        savedPlaylist.addEventListener("click", function(e) {
+          e.preventDefault()
+          console.log("clickies")
+          
+          fetch('/api/songs/get_all', {
+            method: "GET",  
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("get one playlist:", data)
+            data.forEach((song) => {
+              displayPlaylistSongs = document.createElement("ol")
+              displayPlaylistSongs.textContent = `Title: ${song.title} Artist: ${song.artist}`
+              showSavedSongs.appendChild(displayPlaylistSongs)
+            })
+          })
+        })
       });
     })
     .catch((error) => console.error("Error:", error));
@@ -152,6 +173,8 @@ showPlaylist.addEventListener("click", function (e) {
 //     console.log("get one playlist:", data)
 //   })
 // })
+
+
 
 
 //============Save song Section =================//
